@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MainGoQuizAgain">
-        <activity android:name=".QuizActivity"></activity>
+        <activity android:name=".QuizActivity" />
         <activity android:name=".PlayActivity"/>
         <activity android:name=".ResultActivity"/>
         <activity android:name=".SplashScreen">

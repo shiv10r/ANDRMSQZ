@@ -1,12 +1,12 @@
 package com.shr.maingoquizagain;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
-import android.widget.TextView;
-import android.content.Context;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class CorrectDialog {
     private Context mContext;

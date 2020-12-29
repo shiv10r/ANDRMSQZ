@@ -6,7 +6,7 @@ import android.media.MediaPlayer;
 public class PlayAudioForAnswers {
 
     private Context mContext;
-    private MediaPlayer MediaPlayer;
+    private MediaPlayer mediaPlayer;
 
 
     public PlayAudioForAnswers(Context mContext) {
@@ -22,12 +22,12 @@ public class PlayAudioForAnswers {
                 playMusic(correctAudio);
                 break;
             case 2:
-                int wrongAudio = R.raw.wrong;
+                int wrongAudio = R.raw.correct;
                 playMusic(wrongAudio);
                 break;
 
             case 3:
-                int timerAudio = R.raw.timetick;
+                int timerAudio = R.raw.correct;
                 playMusic(timerAudio);
                 break;
         }
@@ -37,18 +37,8 @@ public class PlayAudioForAnswers {
     private void playMusic(int audiofile) {
 
         mediaPlayer = MediaPlayer.create(mContext, audiofile);
-        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared (MediaPlayer mp){
-                mediaPlayer.start();
-            }
-        });
-        mediaPlayer.setOnCompleteListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp){
-                mediaPlayer.release();
-            }
-        });
+        mediaPlayer.setOnPreparedListener(mp -> mediaPlayer.start());
+        mediaPlayer.setOnCompletionListener(MediaPlayer::release);
     }
 }
 

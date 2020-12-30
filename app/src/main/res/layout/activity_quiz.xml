@@ -102,7 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Opeating System"
+                android:text="Operating System"
                 android:textSize="22sp"
                 android:textColor="#141414"
                 android:textAlignment="center"

@@ -3,7 +3,6 @@ package com.shr.maingoquizagain;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,20 +35,14 @@ public class ResultActivity extends AppCompatActivity {
         txtCorrectQues = findViewById(R.id.result_Correct_Ques);
         txtWrongQues = findViewById(R.id.result_Wrong_Ques);
 
-        btMainMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ResultActivity.this, PlayActivity.class);
-                startActivity(intent);
-            }
+        btMainMenu.setOnClickListener(view -> {
+            Intent intent = new Intent(ResultActivity.this, PlayActivity.class);
+            startActivity(intent);
         });
 
-        btStartQuiz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ResultActivity.this, QuizActivity.class);
-                startActivity(intent);
-            }
+        btStartQuiz.setOnClickListener(v -> {
+            Intent intent = new Intent(ResultActivity.this, QuizActivity.class);
+            startActivity(intent);
         });
 
         Intent intent = getIntent();
@@ -60,9 +53,9 @@ public class ResultActivity extends AppCompatActivity {
         int wrongQues = intent.getIntExtra("WrongQues", 0);
 
 
-        txtTotalQuizQues.setText("toatlQue: " + String.valueOf(totalQuestion));
-        txtCorrectQues.setText("Correct" + String.valueOf(correctQues));
-        txtWrongQues.setText("Wrong" + String.valueOf(wrongQues));
+        txtTotalQuizQues.setText("Total Questions: " + String.valueOf(totalQuestion));
+        txtCorrectQues.setText("Correct: " + String.valueOf(correctQues));
+        txtWrongQues.setText("Wrong: " + String.valueOf(wrongQues));
 
         if (score > highScore) {
             updateHighScore(score);
@@ -73,19 +66,19 @@ public class ResultActivity extends AppCompatActivity {
         highScore = newHighScore;
         txtHighScore.setText("HighScore" + String.valueOf(highScore));
 
-        SharedPreferences sharedPreferences = getsharedPreference(SHARED_PREFERENCE,MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCE,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(SHARED_PREFERENCE_HIGH_SCORE,highScore);
         editor.apply();
     }
     public void loadHighScore(){
         SharedPreferences sharedPreferences =  getSharedPreferences(SHARED_PREFERENCE, MODE_PRIVATE);
-        highScore = sharedPreferences .getInt(SHARED_PREFERENCE_HIGH_SCORE);
+        highScore = sharedPreferences .getInt(SHARED_PREFERENCE_HIGH_SCORE,highScore);
         txtHighScore.setText("High Score" + String.valueOf(highScore));
     }
 
     @Override
-    public void onBackpressed() {
+    public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()) {
             Intent intent = new Intent(ResultActivity.this, PlayActivity.class);
             startActivity(intent);

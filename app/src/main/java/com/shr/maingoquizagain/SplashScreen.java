@@ -1,9 +1,8 @@
 package com.shr.maingoquizagain;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,27 +23,24 @@ public class SplashScreen extends AppCompatActivity {
         txtSplashText = findViewById(R.id.textviewLogoText);
         imgViewLogo = findViewById(R.id.imgviewLogo);
 
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.transition);
-        imgViewLogo.setAnimation(animation);
-        txtSplashText.setAnimation(animation);
+//        Animation animation = AnimationUtils.loadAnimation(this, R.anim.transition);
+//        imgViewLogo.setAnimation(animation);
+//        txtSplashText.setAnimation(animation);
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        Thread thread = new Thread(() -> {
 
-                try{
-                    sleep(3000);
-                } catch(Exception e){
-                    e.printStackTrace();
-                }finally{
-                    GotoPlayActivity();
-                }
+            try{
+                Thread.sleep(3000);
+            } catch(Exception e){
+                e.printStackTrace();
+            }finally{
+                GotoPlayActivity();
             }
         });
         thread.start();
     }
     private void GotoPlayActivity(){
-        startActivity(new Intent(SplashScreen.this, PlayActivity.class),EXIT_CODE);
+        startActivity(new Intent(SplashScreen.this, PlayActivity.class));
     }
     @Override
     protected void onActivityResult(int  requestCode, int resultCode, @Nullable Intent data){

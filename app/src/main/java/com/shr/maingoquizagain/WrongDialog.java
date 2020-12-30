@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -26,12 +25,9 @@ public class WrongDialog {
 
         textViewCorrectAnswer.setText("correct Ans: " + String.valueOf(correctAnswer));
 
-        btWrongDialog.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(view v){
-                wrongDialog.dismiss();
-                mquizActivity.showQuestions();
-            }
+        btWrongDialog.setOnClickListener(view -> {
+            wrongDialog.dismiss();
+            mquizActivity.showQuestions();
         });
         wrongDialog.show();
         wrongDialog.setCancelable(false);
